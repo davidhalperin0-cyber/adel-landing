@@ -1,0 +1,1077 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ADEL | איפור קבוע ועיצוב גבות</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@200;300;400;500;700;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --blush: #d4878f;
+            --nude: #e8c4b8;
+            --dark: #111;
+            --off-white: #f8f5f1;
+            --warm-gray: #9a8f8a;
+            --text: #2c2424;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Heebo', sans-serif;
+            background: var(--off-white);
+            color: var(--text);
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* ====== NAV ====== */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            padding: 1.5rem 3rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            mix-blend-mode: difference;
+        }
+
+        .nav-name {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.6rem;
+            font-weight: 300;
+            color: white;
+            text-decoration: none;
+            letter-spacing: 6px;
+            text-transform: uppercase;
+        }
+
+        .nav-book {
+            color: white;
+            text-decoration: none;
+            font-size: 0.8rem;
+            font-weight: 300;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            border-bottom: 1px solid rgba(255,255,255,0.4);
+            padding-bottom: 2px;
+            transition: opacity 0.3s;
+        }
+
+        .nav-book:hover { opacity: 0.6; }
+
+        /* ====== HERO ====== */
+        .hero {
+            height: 100svh;
+            position: relative;
+            display: flex;
+            align-items: flex-end;
+            overflow: hidden;
+        }
+
+        .hero video {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(0.55) saturate(1.1);
+        }
+
+        .hero-text {
+            position: relative;
+            z-index: 2;
+            padding: 0 3rem 4rem;
+            color: white;
+            max-width: 700px;
+        }
+
+        .hero-tag {
+            font-size: 0.7rem;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            color: var(--nude);
+            margin-bottom: 1.5rem;
+            font-weight: 300;
+        }
+
+        .hero h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(3rem, 7vw, 5.5rem);
+            font-weight: 300;
+            line-height: 1.05;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero h1 em {
+            font-style: italic;
+            color: var(--nude);
+        }
+
+        .hero p {
+            font-weight: 200;
+            font-size: 1.05rem;
+            color: rgba(255,255,255,0.7);
+            max-width: 400px;
+            line-height: 1.8;
+        }
+
+        .hero-fade {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 40%;
+            background: linear-gradient(to top, rgba(0,0,0,0.5), transparent);
+            z-index: 1;
+        }
+
+        /* ====== MARQUEE ====== */
+        .marquee-wrap {
+            background: var(--dark);
+            overflow: hidden;
+            padding: 1.2rem 0;
+        }
+
+        .marquee {
+            display: flex;
+            animation: marquee 20s linear infinite;
+            white-space: nowrap;
+        }
+
+        .marquee span {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1rem;
+            letter-spacing: 6px;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.4);
+            padding: 0 3rem;
+            font-weight: 300;
+        }
+
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* ====== SPLIT ABOUT ====== */
+        .split {
+            display: grid;
+            grid-template-columns: 1.1fr 1fr;
+            min-height: 90vh;
+        }
+
+        .split-media {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .split-media video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .split-content {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 5rem 4rem;
+        }
+
+        .label {
+            font-size: 0.7rem;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            color: var(--blush);
+            margin-bottom: 2rem;
+            font-weight: 400;
+        }
+
+        .split-content h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(2rem, 3.5vw, 3rem);
+            font-weight: 300;
+            line-height: 1.3;
+            margin-bottom: 2rem;
+        }
+
+        .split-content p {
+            font-weight: 300;
+            font-size: 1rem;
+            line-height: 2;
+            color: var(--warm-gray);
+            max-width: 450px;
+        }
+
+        .numbers {
+            display: flex;
+            gap: 3rem;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(0,0,0,0.08);
+        }
+
+        .numbers strong {
+            display: block;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.5rem;
+            font-weight: 300;
+            color: var(--text);
+        }
+
+        .numbers small {
+            font-size: 0.75rem;
+            color: var(--warm-gray);
+            letter-spacing: 1px;
+            font-weight: 300;
+        }
+
+        /* ====== SERVICES ====== */
+        .services {
+            padding: 7rem 3rem;
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+
+        .services-head {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-bottom: 4rem;
+        }
+
+        .services-head h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(2rem, 3.5vw, 3rem);
+            font-weight: 300;
+        }
+
+        .services-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+        }
+
+        .svc {
+            display: grid;
+            grid-template-columns: 1fr 2fr 1fr;
+            align-items: center;
+            padding: 2.5rem 0;
+            border-bottom: 1px solid rgba(0,0,0,0.08);
+            cursor: default;
+            transition: all 0.4s;
+        }
+
+        .svc:first-child { border-top: 1px solid rgba(0,0,0,0.08); }
+
+        .svc:hover { padding-right: 1.5rem; }
+
+        .svc-num {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.2rem;
+            color: var(--warm-gray);
+            font-weight: 300;
+        }
+
+        .svc h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.6rem;
+            font-weight: 400;
+        }
+
+        .svc p {
+            font-size: 0.85rem;
+            color: var(--warm-gray);
+            font-weight: 300;
+            text-align: left;
+            line-height: 1.6;
+        }
+
+        /* ====== VIDEO REEL ====== */
+        .reel-section {
+            background: var(--dark);
+            padding: 5rem 0;
+        }
+
+        .reel-head {
+            padding: 0 3rem 3rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+        }
+
+        .reel-head h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(2rem, 3.5vw, 3rem);
+            font-weight: 300;
+            color: white;
+        }
+
+        .reel-head .label { margin-bottom: 0; }
+
+        .reel {
+            display: flex;
+            gap: 1rem;
+            padding: 0 3rem;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+            cursor: grab;
+        }
+
+        .reel::-webkit-scrollbar { display: none; }
+
+        .reel-card {
+            flex: 0 0 260px;
+            height: 460px;
+            border-radius: 8px;
+            overflow: hidden;
+            position: relative;
+            scroll-snap-align: start;
+            transition: transform 0.4s;
+        }
+
+        .reel-card:hover { transform: scale(1.02); }
+
+        .reel-card video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* ====== GALLERY BENTO ====== */
+        .bento {
+            padding: 7rem 3rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .bento-head {
+            margin-bottom: 3rem;
+        }
+
+        .bento-head h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(2rem, 3.5vw, 3rem);
+            font-weight: 300;
+        }
+
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            grid-template-rows: 300px 300px;
+            gap: 0.75rem;
+        }
+
+        .bento-item {
+            border-radius: 6px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .bento-item video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s;
+        }
+
+        .bento-item:hover video { transform: scale(1.05); }
+
+        .bento-item:nth-child(1) { grid-column: 1 / 6; grid-row: 1 / 3; }
+        .bento-item:nth-child(2) { grid-column: 6 / 9; }
+        .bento-item:nth-child(3) { grid-column: 9 / 13; }
+        .bento-item:nth-child(4) { grid-column: 6 / 10; }
+        .bento-item:nth-child(5) { grid-column: 10 / 13; }
+
+        /* ====== TESTIMONIAL ====== */
+        .quote-section {
+            padding: 7rem 3rem;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .quote-mark {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 5rem;
+            color: var(--nude);
+            line-height: 1;
+        }
+
+        .quote-text {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(1.3rem, 2.5vw, 1.8rem);
+            font-weight: 300;
+            line-height: 1.9;
+            font-style: italic;
+            color: var(--text);
+            margin-bottom: 2rem;
+        }
+
+        .quote-author {
+            font-size: 0.8rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--warm-gray);
+            font-weight: 300;
+        }
+
+        /* ====== REVIEWS ====== */
+        .reviews-section {
+            padding: 7rem 3rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .reviews-head {
+            margin-bottom: 3rem;
+        }
+
+        .reviews-head h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(2rem, 3.5vw, 3rem);
+            font-weight: 300;
+        }
+
+        .reviews-scroll {
+            display: flex;
+            gap: 1.2rem;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+            padding-bottom: 1rem;
+        }
+
+        .reviews-scroll::-webkit-scrollbar { display: none; }
+
+        .review-img {
+            flex: 0 0 300px;
+            border-radius: 12px;
+            overflow: hidden;
+            scroll-snap-align: start;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+            transition: transform 0.3s;
+        }
+
+        .review-img:hover { transform: translateY(-4px); }
+
+        .review-img img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        @media (max-width: 900px) {
+            .reviews-section { padding: 4rem 1.5rem; }
+            .review-img { flex: 0 0 260px; }
+        }
+
+        /* ====== BOOKING ====== */
+        .booking {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            min-height: 100vh;
+        }
+
+        .booking-visual {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .booking-visual video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(0.7);
+        }
+
+        .booking-visual-overlay {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-align: center;
+            padding: 3rem;
+        }
+
+        .booking-visual-overlay h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.5rem;
+            font-weight: 300;
+            margin-bottom: 1rem;
+        }
+
+        .booking-visual-overlay p {
+            font-weight: 200;
+            font-size: 0.95rem;
+            color: rgba(255,255,255,0.6);
+            line-height: 1.8;
+        }
+
+        .booking-form-side {
+            background: var(--dark);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 4rem;
+            color: white;
+        }
+
+        .booking-form-side .label { color: var(--nude); margin-bottom: 1.5rem; }
+
+        .booking-form-side h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.2rem;
+            font-weight: 300;
+            margin-bottom: 0.8rem;
+        }
+
+        .booking-form-side > p {
+            font-weight: 200;
+            color: rgba(255,255,255,0.4);
+            margin-bottom: 2.5rem;
+            font-size: 0.9rem;
+            line-height: 1.7;
+        }
+
+        .bk-form { display: flex; flex-direction: column; gap: 1rem; }
+
+        .bk-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+
+        .bk-field {
+            display: flex;
+            flex-direction: column;
+            gap: 0.4rem;
+        }
+
+        .bk-field label {
+            font-size: 0.7rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.35);
+            font-weight: 300;
+        }
+
+        .bk-field input,
+        .bk-field select {
+            background: transparent;
+            border: none;
+            border-bottom: 1px solid rgba(255,255,255,0.15);
+            padding: 0.8rem 0;
+            color: white;
+            font-family: 'Heebo', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 300;
+            transition: border-color 0.3s;
+            direction: rtl;
+        }
+
+        .bk-field input::placeholder { color: rgba(255,255,255,0.25); }
+        .bk-field input:focus,
+        .bk-field select:focus { outline: none; border-color: var(--blush); }
+        .bk-field select option { background: var(--dark); }
+
+        .bk-submit {
+            margin-top: 1.5rem;
+            padding: 1rem 0;
+            background: transparent;
+            border: 1px solid rgba(255,255,255,0.2);
+            color: white;
+            font-family: 'Heebo', sans-serif;
+            font-size: 0.85rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.4s;
+            font-weight: 300;
+        }
+
+        .bk-submit:hover {
+            background: var(--blush);
+            border-color: var(--blush);
+        }
+
+        .bk-note {
+            margin-top: 1.5rem;
+            font-size: 0.75rem;
+            color: rgba(255,255,255,0.25);
+            font-weight: 200;
+            text-align: center;
+        }
+
+        /* ====== FOOTER ====== */
+        .footer {
+            background: var(--dark);
+            color: white;
+            padding: 3rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid rgba(255,255,255,0.06);
+        }
+
+        .footer-brand {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.2rem;
+            font-weight: 300;
+            letter-spacing: 4px;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .footer-links a {
+            color: rgba(255,255,255,0.4);
+            text-decoration: none;
+            font-size: 0.8rem;
+            font-weight: 300;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover { color: var(--nude); }
+
+        .footer-copy {
+            font-size: 0.7rem;
+            color: rgba(255,255,255,0.2);
+            font-weight: 200;
+        }
+
+        /* ====== WHATSAPP FLOAT ====== */
+        .wa-float {
+            position: fixed;
+            bottom: 2rem;
+            left: 2rem;
+            z-index: 99;
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: #25D366;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            box-shadow: 0 4px 20px rgba(37,211,102,0.35);
+            transition: transform 0.3s;
+        }
+
+        .wa-float:hover { transform: scale(1.08); }
+        .wa-float svg { width: 28px; height: 28px; fill: white; }
+
+        /* ====== LIGHTBOX ====== */
+        .lightbox {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.95);
+            z-index: 10000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .lightbox.active { display: flex; }
+
+        .lightbox video {
+            max-width: 90vw;
+            max-height: 90vh;
+            border-radius: 4px;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 2rem;
+            left: 2rem;
+            color: white;
+            font-size: 1.5rem;
+            background: none;
+            border: none;
+            cursor: pointer;
+            opacity: 0.6;
+            transition: opacity 0.3s;
+        }
+
+        .lightbox-close:hover { opacity: 1; }
+
+        /* ====== REVEAL ====== */
+        .rv { opacity: 0; transform: translateY(30px); transition: all 0.7s ease-out; }
+        .rv.show { opacity: 1; transform: translateY(0); }
+
+        /* ====== RESPONSIVE ====== */
+        @media (max-width: 900px) {
+            .split { grid-template-columns: 1fr; }
+            .split-media { height: 50vh; }
+            .split-content { padding: 3rem 2rem; }
+
+            .svc { grid-template-columns: auto 1fr; gap: 1rem; }
+            .svc p { display: none; }
+
+            .bento-grid {
+                grid-template-columns: 1fr 1fr;
+                grid-template-rows: auto;
+            }
+            .bento-item:nth-child(1) { grid-column: 1 / 3; grid-row: auto; }
+            .bento-item:nth-child(n) { grid-column: auto; height: 250px; }
+            .bento-item:nth-child(1) { height: 350px; }
+
+            .booking { grid-template-columns: 1fr; }
+            .booking-visual { height: 40vh; }
+            .booking-form-side { padding: 2.5rem 2rem; }
+            .bk-row { grid-template-columns: 1fr; }
+
+            .nav { padding: 1rem 1.5rem; }
+            .hero-text { padding: 0 1.5rem 3rem; }
+            .services { padding: 4rem 1.5rem; }
+            .bento { padding: 4rem 1.5rem; }
+
+            .footer { flex-direction: column; gap: 1.5rem; text-align: center; }
+
+            .services-head { flex-direction: column; align-items: flex-start; gap: 1rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAV -->
+    <nav class="nav">
+        <a href="#" class="nav-name">Adel</a>
+        <a href="#booking" class="nav-book">קביעת תור</a>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero">
+        <video autoplay muted loop playsinline>
+            <source src="assets/videos/hero.mp4" type="video/mp4">
+        </video>
+        <div class="hero-fade"></div>
+        <div class="hero-text">
+            <div class="hero-tag">permanent makeup artist</div>
+            <h1><em>בואי להדגיש את היופי שלך.</em></h1>
+            <p>איפור קבוע לשפתיים ולגבות, עיצוב גבות ושעווה לגוף ולפנים — במקצועיות וברגישות, לתוצאה טבעית ומושלמת.</p>
+        </div>
+    </section>
+
+    <!-- MARQUEE -->
+    <div class="marquee-wrap">
+        <div class="marquee">
+            <span>Lip Blush</span><span>Brow Design</span><span>Permanent Makeup</span><span>Face & Body Wax</span>
+            <span>Lip Blush</span><span>Brow Design</span><span>Permanent Makeup</span><span>Face & Body Wax</span>
+            <span>Lip Blush</span><span>Brow Design</span><span>Permanent Makeup</span><span>Face & Body Wax</span>
+            <span>Lip Blush</span><span>Brow Design</span><span>Permanent Makeup</span><span>Face & Body Wax</span>
+        </div>
+    </div>
+
+    <!-- ABOUT -->
+    <section class="split" id="about">
+        <div class="split-media">
+            <video autoplay muted loop playsinline>
+                <source src="assets/videos/process1.mp4" type="video/mp4">
+            </video>
+        </div>
+        <div class="split-content rv">
+            <div class="label">אודות</div>
+            <h2>כל טיפול הוא<br>יצירה אישית</h2>
+            <p>
+                אני אדל, מאפרת קבועה מוסמכת. אני מאמינה שכל אישה ראויה
+                להרגיש יפה ובטוחה בעצמה — בלי להתאפר כל בוקר מחדש.
+                אני עובדת עם חומרים פרימיום, בסביבה היגיינית, עם תשומת לב
+                לכל פרט כדי ליצור מראה שמותאם בדיוק לך.
+            </p>
+            <div class="numbers">
+                <div><strong>300+</strong><small>לקוחות</small></div>
+                <div><strong>5+</strong><small>שנות ניסיון</small></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SERVICES -->
+    <section class="services rv" id="services">
+        <div class="services-head">
+            <div>
+                <div class="label">שירותים</div>
+                <h2>מה אני עושה</h2>
+            </div>
+        </div>
+        <div class="services-list">
+            <div class="svc">
+                <span class="svc-num">01</span>
+                <h3>איפור קבוע לשפתיים</h3>
+                <p>שפתיים מלאות בצבע טבעי שנשאר. צבעים פרימיום שמותאמים לגוון העור שלך.</p>
+            </div>
+            <div class="svc">
+                <span class="svc-num">02</span>
+                <h3>עיצוב וסידור גבות</h3>
+                <p>שאווה, פינצטה ועיצוב מדויק. גבות מושלמות שמסגרות את הפנים.</p>
+            </div>
+            <div class="svc">
+                <span class="svc-num">03</span>
+                <h3>איפור קבוע לגבות</h3>
+                <p>מיקרובליידינג ואומברה. טכניקות מתקדמות לשערות טבעיות ומילוי מדויק.</p>
+            </div>
+            <div class="svc">
+                <span class="svc-num">04</span>
+                <h3>שעווה גוף ופנים</h3>
+                <p>הסרת שיער בשעווה חמה לגוף ולפנים. תוצאה חלקה ומושלמת לאורך זמן.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- VIDEO REEL -->
+    <section class="reel-section">
+        <div class="reel-head">
+            <div>
+                <div class="label">מאחורי הקלעים</div>
+                <h2>תהליך העבודה</h2>
+            </div>
+        </div>
+        <div class="reel">
+            <div class="reel-card" onclick="openLightbox('assets/videos/process1.mp4')">
+                <video autoplay muted loop playsinline><source src="assets/videos/process1.mp4" type="video/mp4"></video>
+            </div>
+            <div class="reel-card" onclick="openLightbox('assets/videos/process2.mp4')">
+                <video autoplay muted loop playsinline><source src="assets/videos/process2.mp4" type="video/mp4"></video>
+            </div>
+            <div class="reel-card" onclick="openLightbox('assets/videos/process3.mp4')">
+                <video autoplay muted loop playsinline><source src="assets/videos/process3.mp4" type="video/mp4"></video>
+            </div>
+            <div class="reel-card" onclick="openLightbox('assets/videos/process8.mp4')">
+                <video autoplay muted loop playsinline><source src="assets/videos/process8.mp4" type="video/mp4"></video>
+            </div>
+            <div class="reel-card" onclick="openLightbox('assets/videos/process4.mp4')">
+                <video autoplay muted loop playsinline><source src="assets/videos/process4.mp4" type="video/mp4"></video>
+            </div>
+        </div>
+    </section>
+
+    <!-- GALLERY -->
+    <section class="bento rv" id="gallery">
+        <div class="bento-head">
+            <div class="label">גלריה</div>
+            <h2>מהעבודות שלי</h2>
+        </div>
+        <div class="bento-grid">
+            <div class="bento-item">
+                <video autoplay muted loop playsinline><source src="assets/videos/process2.mp4" type="video/mp4"></video>
+            </div>
+            <div class="bento-item">
+                <video autoplay muted loop playsinline><source src="assets/videos/process5.mp4" type="video/mp4"></video>
+            </div>
+            <div class="bento-item">
+                <video autoplay muted loop playsinline><source src="assets/videos/process6.mp4" type="video/mp4"></video>
+            </div>
+            <div class="bento-item">
+                <video autoplay muted loop playsinline><source src="assets/videos/process4.mp4" type="video/mp4"></video>
+            </div>
+            <div class="bento-item">
+                <video autoplay muted loop playsinline><source src="assets/videos/process7.mp4" type="video/mp4"></video>
+            </div>
+        </div>
+    </section>
+
+    <!-- TESTIMONIALS -->
+    <section class="reviews-section rv" id="reviews">
+        <div class="reviews-head">
+            <div class="label">המלצות</div>
+            <h2>מה הלקוחות אומרות</h2>
+        </div>
+        <div class="reviews-scroll">
+            <div class="review-img"><img src="assets/images/review1.jpg" alt="המלצה"></div>
+            <div class="review-img"><img src="assets/images/review2.jpg" alt="המלצה"></div>
+            <div class="review-img"><img src="assets/images/review3.jpg" alt="המלצה"></div>
+            <div class="review-img"><img src="assets/images/review4.jpg" alt="המלצה"></div>
+            <div class="review-img"><img src="assets/images/review5.jpg" alt="המלצה"></div>
+        </div>
+    </section>
+
+    <!-- BOOKING -->
+    <section class="booking" id="booking">
+        <div class="booking-visual">
+            <video autoplay muted loop playsinline>
+                <source src="assets/videos/process5.mp4" type="video/mp4">
+            </video>
+            <div class="booking-visual-overlay">
+                <h3>מוכנה לשינוי?</h3>
+                <p>מלאי את הפרטים ואני אחזור<br>אלייך דרך WhatsApp לאישור</p>
+            </div>
+        </div>
+        <div class="booking-form-side">
+            <div class="label">קביעת תור</div>
+            <h2>שלחי בקשה</h2>
+            <p>מלאי את הפרטים — בלחיצה, ההודעה תישלח אליי ישירות ל-WhatsApp ואאשר לך את התור.</p>
+            <form class="bk-form" id="bookingForm" onsubmit="sendToWhatsApp(event)">
+                <div class="bk-row">
+                    <div class="bk-field">
+                        <label>שם מלא</label>
+                        <input type="text" id="bkName" placeholder="השם שלך" required>
+                    </div>
+                    <div class="bk-field">
+                        <label>טלפון</label>
+                        <input type="tel" id="bkPhone" placeholder="050-0000000" required>
+                    </div>
+                </div>
+                <div class="bk-field">
+                    <label>שירות</label>
+                    <select id="bkService" required>
+                        <option value="" disabled selected>בחרי שירות</option>
+                        <option>איפור קבוע לשפתיים</option>
+                        <option>עיצוב וסידור גבות</option>
+                        <option>איפור קבוע לגבות</option>
+                        <option>שעווה גוף ופנים</option>
+                    <option>אחר</option>
+                    </select>
+                </div>
+                <div class="bk-row">
+                    <div class="bk-field">
+                        <label>תאריך מבוקש</label>
+                        <select id="bkDate" required>
+                            <option value="" disabled selected>בחרי תאריך</option>
+                        </select>
+                    </div>
+                    <div class="bk-field">
+                        <label>שעה מבוקשת</label>
+                        <select id="bkTime" required>
+                            <option value="" disabled selected>בחרי שעה</option>
+                            <option>09:00</option>
+                            <option>09:30</option>
+                            <option>10:00</option>
+                            <option>10:30</option>
+                            <option>11:00</option>
+                            <option>11:30</option>
+                            <option>12:00</option>
+                            <option>12:30</option>
+                            <option>13:00</option>
+                            <option>13:30</option>
+                            <option>14:00</option>
+                            <option>14:30</option>
+                            <option>15:00</option>
+                            <option>15:30</option>
+                            <option>16:00</option>
+                            <option>16:30</option>
+                            <option>17:00</option>
+                            <option>17:30</option>
+                            <option>18:00</option>
+                            <option>18:30</option>
+                            <option>19:00</option>
+                            <option>19:30</option>
+                            <option>20:00</option>
+                        </select>
+                    </div>
+                </div>
+                <button type="submit" class="bk-submit">שליחה דרך WhatsApp</button>
+                <div class="bk-note">ההודעה תישלח ישירות ל-WhatsApp של אדל לאישור התור</div>
+            </form>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-brand">ADEL</div>
+        <div class="footer-links">
+            <a href="https://www.instagram.com/adelcohen20" target="_blank">Instagram</a>
+            <a href="https://www.tiktok.com/@adelcohen11" target="_blank">TikTok</a>
+            <a href="https://wa.me/972535869292" target="_blank">WhatsApp</a>
+        </div>
+        <div class="footer-copy">&copy; 2024 Adel Cohen</div>
+    </footer>
+
+    <!-- WA FLOAT -->
+    <a href="https://wa.me/972535869292" target="_blank" class="wa-float">
+        <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    </a>
+
+    <!-- LIGHTBOX -->
+    <div class="lightbox" id="lightbox">
+        <button class="lightbox-close" onclick="closeLightbox()">&times;</button>
+        <video id="lb-video" controls><source id="lb-src" src="" type="video/mp4"></video>
+    </div>
+
+    <script>
+        // Reveal on scroll
+        const rvs = document.querySelectorAll('.rv');
+        const obs = new IntersectionObserver(entries => {
+            entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('show'); });
+        }, { threshold: 0.15 });
+        rvs.forEach(el => obs.observe(el));
+        setTimeout(() => rvs.forEach(el => el.classList.add('show')), 2000);
+
+        // Lightbox
+        function openLightbox(src) {
+            document.getElementById('lb-src').src = src;
+            const v = document.getElementById('lb-video');
+            v.load(); v.play();
+            document.getElementById('lightbox').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        function closeLightbox() {
+            document.getElementById('lb-video').pause();
+            document.getElementById('lightbox').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+        document.getElementById('lightbox').addEventListener('click', e => {
+            if (e.target === e.currentTarget) closeLightbox();
+        });
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(a => {
+            a.addEventListener('click', e => {
+                e.preventDefault();
+                const t = document.querySelector(a.getAttribute('href'));
+                if (t) t.scrollIntoView({ behavior: 'smooth' });
+            });
+        });
+
+        // WhatsApp booking
+        function sendToWhatsApp(e) {
+            e.preventDefault();
+            const name = document.getElementById('bkName').value;
+            const phone = document.getElementById('bkPhone').value;
+            const service = document.getElementById('bkService').value;
+            const date = document.getElementById('bkDate').value;
+            const time = document.getElementById('bkTime').value;
+
+            const msg = encodeURIComponent(
+                `היי אדל, זאת ${name}.\n` +
+                `אשמח לקבוע תור ל*${service}*\n` +
+                `בתאריך: *${date}*\n` +
+                `בשעה: *${time}*\n` +
+                `טלפון: ${phone}\n\n` +
+                `אשמח שתאשרי לי את התור, תודה!`
+            );
+
+            window.open('https://wa.me/972535869292?text=' + msg, '_blank');
+        }
+
+        // Populate date dropdown with next 30 days
+        const dateSelect = document.getElementById('bkDate');
+        const days = ['ראשון','שני','שלישי','רביעי','חמישי','שישי','שבת'];
+        for (let i = 1; i <= 30; i++) {
+            const d = new Date();
+            d.setDate(d.getDate() + i);
+            if (d.getDay() === 6) continue; // skip שבת
+            const dayName = days[d.getDay()];
+            const dd = String(d.getDate()).padStart(2,'0');
+            const mm = String(d.getMonth()+1).padStart(2,'0');
+            const label = `יום ${dayName}, ${dd}.${mm}`;
+            const val = `${dd}.${mm}.${d.getFullYear()}`;
+            const opt = document.createElement('option');
+            opt.value = val;
+            opt.textContent = label;
+            dateSelect.appendChild(opt);
+        }
+    </script>
+
+</body>
+</html>
